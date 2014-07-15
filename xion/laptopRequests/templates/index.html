@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Current list of laptop requests</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link href="/css/base.css" rel="stylesheet" type="text/css">
+	</head>
+
+<body>
+<table>
+	<tr><td style="vertical-align:top;">
+        <table class="navigation">
+			<tr><td>
+                    <form action="/admin">
+						<input style="width:120px;" type="submit" value="Request a Laptop">
+					</form>
+			</td></tr>
+
+			<tr><td>
+				<form method="post" action="/cgi-bin/getStats.py">
+					<input type="hidden" name="admin" value="%(admin)s">
+					<input style="width:120px;" type="submit" value="Laptop Requests">
+				</form>
+			</td></tr>
+
+
+            <tr><td>
+                <form method="post" action="/cgi-bin/getLaptops.py">
+                    <input style="width:120px;" type="submit" value="Laptop Tracking(beta)">
+                </form>
+            </td></tr>
+
+			<tr><td>
+				<form action="http://xion.passcal.nmt.edu"><input style="width:120px;" type="submit" value="XION"></form>
+			</td></tr>
+
+            <tr style="height:20px;"><td>
+			</td></tr>
+
+            <tr><td>
+				%(archiveButton)s
+			</td></tr>
+        </table>
+    </td><td style="vertical-align:top;">
+
+<!--Begin laptop entry table-->
+    <table>
+    {% for request in requests %}
+       <tr><td bgcolor="gray" width="200px" onClick="document.location.href='http://xion.passcal.nmt.edu/cgi-bin/getDetailedStatus.py?id={{ request.id }};&admin={{ admin }};'" style="cursor:pointer;cursor:hand">
+	       <b>{{ request.experimentName }}</b>
+           <br>Status : {{ request.status }}
+           <br>Required by {{ request.readyby }}<br>
+       </td></tr>
+    {% endfor %}
+    </table>
+<!--End laptop entry table-->
+
+
+    <td style="vertical-align:top;"><table style="vertical-align:top;">
+		<tr style="vertical-align:top;"><td style="vertical-align:top; width:600px;">
+				<h3 style="vertical-align:top;">
+					About this search:
+				</h3>
+				<p>
+					You can use this to search through the records of laptop requests.
+					Give all of the fields you want to search followed by a ":" and then what you want to
+					look for.  Separate each of these search parameters by a space.
+				<p>
+				<h4>
+					Searchable fields:
+				</h4>
+				<ul>
+					<li>status  -  The current status of the request (new, started, testing, ready, archive)</li>
+					<li>date  -  The date the request was submitted</li>
+					<li>name  -  The submitter's name</li>
+					<li>email  -  The submitter's email</li>
+					<li>notify  -  Whether email notification was selected</li>
+					<li>readyby  -  The 'Requested by' date</li>
+					<li>nlaptops  -  The number of laptops requested</li>
+					<li>experimentName  -  The experiment name</li>
+					<li>experimentNumber  -  The experiment number (NOTE: many are missing!)</li>
+					<li>location  -  Experiment location</li>
+					<li>backpack  -  Backpack selected</li>
+					<li>typeX  -  Experiment type</li>
+					<li>typeL  -  Laptop type (MAC, PC)</li>
+					<li>owner  -  Owner: PASSCAL/FA</li>
+					<li>ninstr  -  The number of instruments</li>
+					<li>diskspace  -  Diskspace requested</li>
+					<li>media  -  Other media needed: Usbfire, DVD, Tape</li>
+					<li>software  -  Additional software requested</li>
+					<li>notes  -  Submitter notes</li>
+					<li>item  -  Item typer (hdd, laptop, etc...)</li>
+					<li>model  -  Equipment model</li>
+					<li>barcode  -  PASSCAL/FA barcodes</li>
+					<li>serial  -  Equipment serial numbers (NOTE: many are missing!)</li>
+					<li>specs  -  Laptop preparer spec notes</li>
+					<li>comments  -  Laptop preparer equipment notes</li>
+				</ul>
+				<h4>
+					Examples:
+				</h4>
+				<ul>
+					<li> To search for experiments requested on 2009-01-15, try this:<br><br>date:2009-01-15<br><br></li>
+					<li> To search for requests with associated equipment owned by PASSCAl with 54
+						in the barcode from 2009, try this:<br><br>date:2009 barcode:54 owner:PASSCAL<br><br></li>
+				</ul>
+
+
+
+        </td></tr>
+    </table></td>
+
+
+
+</table>
+</body>
+</html>
