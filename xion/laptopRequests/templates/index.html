@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 	<head>
 		<title>Current list of laptop requests</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<link href="/css/base.css" rel="stylesheet" type="text/css">
+		<link href="{% static "base.css" %}" rel="stylesheet" type="text/css">
 	</head>
 
 <body>
@@ -11,34 +12,30 @@
 	<tr><td style="vertical-align:top;">
         <table class="navigation">
 			<tr><td>
-                    <form action="/admin">
+                <form action="/admin/laptopRequests/request/add">
 						<input style="width:120px;" type="submit" value="Request a Laptop">
-					</form>
+				</form>
 			</td></tr>
 
 			<tr><td>
-				<form method="post" action="/cgi-bin/getStats.py">
-					<input type="hidden" name="admin" value="%(admin)s">
+				<form action="/laptopRequests">
 					<input style="width:120px;" type="submit" value="Laptop Requests">
 				</form>
 			</td></tr>
 
-
-            <tr><td>
-                <form method="post" action="/cgi-bin/getLaptops.py">
-                    <input style="width:120px;" type="submit" value="Laptop Tracking(beta)">
-                </form>
-            </td></tr>
-
 			<tr><td>
-				<form action="http://xion.passcal.nmt.edu"><input style="width:120px;" type="submit" value="XION"></form>
+				<form action="/">
+                    <input style="width:120px;" type="submit" value="XION">
+                </form>
 			</td></tr>
 
             <tr style="height:20px;"><td>
 			</td></tr>
 
             <tr><td>
-				%(archiveButton)s
+                <form action="/laptopRequests/{% if archiveButton == "Show" %}archived{% endif %}">
+                    <input style="width:120px;" type="submit" value="{{ archiveButton }} Archived">
+                </form>
 			</td></tr>
         </table>
     </td><td style="vertical-align:top;">
@@ -46,7 +43,7 @@
 <!--Begin laptop entry table-->
     <table>
     {% for request in requests %}
-       <tr><td bgcolor="gray" width="200px" onClick="document.location.href='http://xion.passcal.nmt.edu/cgi-bin/getDetailedStatus.py?id={{ request.id }};&admin={{ admin }};'" style="cursor:pointer;cursor:hand">
+        <tr><td bgcolor="gray" width="200px" onClick="document.location.href='/laptopRequests/{{ request.id }}'" style="cursor:pointer;cursor:hand">
 	       <b>{{ request.experimentName }}</b>
            <br>Status : {{ request.status }}
            <br>Required by {{ request.readyby }}<br>

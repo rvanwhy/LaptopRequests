@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Detailed status of AZ RAMP experiment laptop request</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<link href="{% static "base.css" %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<table class="major">
+	<tr>
+		<td class="navigation" valign="top">
+			<table class="navigation">
+				<tr><td>
+                    <form action="/admin/laptopRequests/request/add">
+						<input style="width:120px;" type="submit" value="Request a Laptop">
+					</form>
+				</td></tr>
+
+				<tr><td>
+					<form action="/laptopRequests">
+						<input style="width:120px;" type="submit" value="Laptop Requests">
+					</form>
+				</td></tr>
+
+				<tr><td>
+					<form action="/cgi-bin/getDetailedStatus.py">
+					<input style="width:120px;" type="submit" value="Login as Admin">
+					</form>
+				</td></tr>
+
+				<tr><td>
+                    <form action="/"><input style="width:120px;" type="submit" value="XION"></form>
+				</td></tr>
+			</table>
+		</td>
+
+
+		<td style="width:900px;">
+			<table class="BlueRounded">
+				<tr>
+					<td class="ColumnHead"><h3 class="ColumnHead">Laptop Request</h3></td>
+					<td class="ColumnHead"><h3 class="ColumnHead">Notes</h3></td>
+				</tr>
+
+                {% for request in requests %}
+				<tr>
+					<td width="300px"  valign="top">
+						<table width="300px">
+							<tr>
+								<td align="right">Status:</td>
+								<td align="left" class="{{request.status}}">{{request.status}}</td>
+							</tr>
+							<tr>
+								<td align="right">Date:</td>
+								<td align="left">{{request.date}}</td>
+							</tr>
+							<tr>
+								<td align="right">Name:</td>
+								<td align="left">{{request.name}}</td>
+							</tr>
+							<tr>
+								<td align="right">email:</td>
+								<td align="left">{{request.email}}</td>
+							</tr>
+							<tr>
+								<td align="right">Notify:</td>
+								<td align="left">{{request.notify}}</td>
+							</tr>
+							<tr>
+								<td align="right">Date Required:</td>
+								<td align="left">{{request.readyby}}</td>
+							</tr>
+							<tr>
+								<td align="right"># of laptops:</td>
+								<td align="left">{{request.nlaptops}}</td>
+							</tr>
+							<tr>
+								<td align="right">Experiment Name:</td>
+								<td align="left">{{request.experimentName}}</td>
+							</tr>
+							<tr>
+								<td align="right">Experiment Number:</td>
+								<td align="left">{{request.experimentNumber}}</td>
+							</tr>
+							<tr>
+								<td align="right">Location:</td>
+								<td align="left">{{request.location}}</td>
+							</tr>
+							<tr>
+								<td align="right">Backpack:</td>
+								<td align="left">{{request.backpack}}</td>
+							</tr>
+							<tr>
+								<td align="right">Experiment Type:</td>
+								<td align="left">{{request.typeX}}</td>
+							</tr>
+							<tr>
+								<td align="right">Laptop Type:</td>
+								<td align="left">{{request.typeL}}</td>
+							</tr>
+							<tr>
+								<td align="right">Owner:</td>
+								<td align="left">{{request.owner}}</td>
+							</tr>
+							<tr>
+								<td align="right"># of instruments:</td>
+								<td align="left">{{request.ninstr}}</td>
+							</tr>
+							<tr>
+								<td align="right">Disk space:</td>
+								<td align="left">{{request.diskspace}}</td>
+							</tr>
+							<tr>
+								<td align="right">Media:</td>
+								<td align="left">{{request.media}}</td>
+							</tr>
+							<tr>
+								<td align="right">Software:</td>
+								<td align="left">{{request.software}}</td>
+							</tr>
+							<tr>
+								<td align="right">Notes:</td>
+								<td align="left">{{request.notes}}</td>
+						</tr>
+					</table>
+				</td>
+                {% endfor %}
+
+
+					<td width="300px" valign="top">
+						<table style="valign:top;width:300px;"><tr><td colspan="2"><table style="width:100%;"><tr><th align="left" width="80%">Item: Barcode</th><th align="left" width="20%">Status</th></tr></table></td></tr>
+<tr><td style="background-color:green;"><form method="post" action="/cgi-bin/getDetailedStatus.py">
+<input type="hidden" name="id" value="314">
+<input type="hidden" name="admin" value="0">
+<input type="hidden" name="noteid" value="2698">
+<input style="background-color:green;border:0;cursor:pointer;cursor:hand;align:left;text-align:left;width:75%;" type="submit" value="Laptop: 1010030"><input style="background-color:green;border:0;cursor:pointer;cursor:hand;align:left;width:25%;" type="submit" value="Ready"></form></td></tr></table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
+

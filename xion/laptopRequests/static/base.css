@@ -1,0 +1,55 @@
+table.BlueRounded {
+	-moz-border-radius:10px;
+	border:2px outset #5599FF;
+  background-color:#AACCFF;
+}
+
+table.main {
+	width:900px;
+}
+
+.BlueRounded td {
+  -moz-border-radius:10px;
+	border:2px outset #5599FF;
+
+}
+
+
+td.ColumnHead {
+	text-align:center;
+	width:300px;
+}
+
+h3.ColumnHead {
+	text-align:center;
+	font-family:Comic Sans, Comic Sans MS, Arial, sans-serif;
+	padding:0;
+}
+
+h2.Title {
+	color:navy;
+}
+
+h3.Header {
+	color:navy;
+}
+
+td.New {
+  background-color:gray;
+}
+
+td.Started {
+  background-color:teal;
+}
+
+td.Testing {
+  background-color:orange;
+}
+
+td.Ready{
+  background-color:green;
+}
+
+td.Archive{
+  background-color:crimson;
+}
