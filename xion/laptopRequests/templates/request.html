@@ -25,7 +25,7 @@
 				</td></tr>
 
 				<tr><td>
-					<form action="/cgi-bin/getDetailedStatus.py">
+					<form action="/admin/laptopRequests/request/{{request.id}}">
 					<input style="width:120px;" type="submit" value="Login as Admin">
 					</form>
 				</td></tr>
@@ -44,8 +44,7 @@
 					<td class="ColumnHead"><h3 class="ColumnHead">Notes</h3></td>
 				</tr>
 
-                {% for request in requests %}
-				<tr>
+                <tr>
 					<td width="300px"  valign="top">
 						<table width="300px">
 							<tr>
@@ -126,7 +125,6 @@
 						</tr>
 					</table>
 				</td>
-                {% endfor %}
 
 
 					<td width="300px" valign="top">

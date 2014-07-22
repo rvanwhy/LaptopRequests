@@ -43,7 +43,7 @@
 <!--Begin laptop entry table-->
     <table>
     {% for request in requests %}
-        <tr><td bgcolor="gray" width="200px" onClick="document.location.href='/laptopRequests/{{ request.id }}'" style="cursor:pointer;cursor:hand">
+        <tr><td class="{{request.status}}" width="200px" onClick="document.location.href='/laptopRequests/{{ request.id }}'" style="cursor:pointer;cursor:hand">
 	       <b>{{ request.experimentName }}</b>
            <br>Status : {{ request.status }}
            <br>Required by {{ request.readyby }}<br>
